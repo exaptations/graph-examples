@@ -29,7 +29,7 @@ public class SimplePropertyGraph {
 		b.setProperty("name", "peter");
 		Edge e = graph.addEdge(null, a, b, "knows");
 		e.setProperty("since", 2006);
-		printGraph(graph);
+		exportGraph(graph, new File("./target/graph-print.xml"));
 		graph.shutdown();
 	}
 
@@ -41,14 +41,16 @@ public class SimplePropertyGraph {
 		b.setProperty("name", "peter");
 		Edge e = graph.addEdge(null, a, b, "knows");
 		e.setProperty("since", 2006);
-		printGraph(graph);
+		exportGraph(graph, new File("./target/graph-print-neo.xml"));
 		graph.shutdown();
 	}
 
-	private void printGraph(Graph graph) {
+	private void exportGraph(Graph graph, File file) {
 		try {
-			FileOutputStream fos = new FileOutputStream(new File("./target/graph-print.xml"));
-			GraphMLWriter.outputGraph(graph, fos);
+			FileOutputStream fos = new FileOutputStream(file);
+			GraphMLWriter graphMLWriter = new GraphMLWriter(graph);
+			graphMLWriter.setNormalize(true); 
+			graphMLWriter.outputGraph(fos);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
