@@ -9,6 +9,7 @@
   <properties>
     <neo4j2Version>2.1.4</neo4j2Version>
     <junitVersion>4.10</junitVersion>
+    <jerseyVersion>1.9</jerseyVersion>
   </properties>
   <profiles>
     <profile>
@@ -99,6 +100,11 @@
       <type>test-jar</type>
       <!--scope>test</scope-->
     </dependency>
+    <dependency>
+      <groupId>com.sun.jersey</groupId>
+      <artifactId>jersey-client</artifactId>
+      <version>${jerseyVersion}</version>
+    </dependency>    
     <dependency>
       <groupId>org.neo4j</groupId>
       <artifactId>neo4j</artifactId>
